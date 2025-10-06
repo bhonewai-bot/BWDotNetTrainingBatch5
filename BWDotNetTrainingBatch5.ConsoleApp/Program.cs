@@ -12,4 +12,11 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 // adoDotNetExample.Edit();
 // adoDotNetExample.Update();
 // adoDotNetExample.Delete();
-adoDotNetExample.SoftDelete();
+// adoDotNetExample.SoftDelete();
+
+DapperExample dapperExample = new DapperExample();
+// dapperExample.Read();
+// dapperExample.Create("Cursor", "Bhone Wai", "Hello World");
+dapperExample.Edit(13);
+// dapperExample.Update(1012, "VS Code", "Bhone Wai", "Hello World");
+// dapperExample.Delete(19);
