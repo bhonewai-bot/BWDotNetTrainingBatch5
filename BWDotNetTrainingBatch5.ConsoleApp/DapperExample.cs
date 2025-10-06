@@ -30,7 +30,7 @@ public class DapperExample
         IDbConnection db = new SqlConnection(_connectionString);
 
         string query = "SELECT * FROM Tbl_Blog WHERE DeleteFlag = 0";
-        var lts = db.Query<BlogDataModel>(query).ToList();
+        var lts = db.Query<BlogDapperDataModel>(query).ToList();
 
         foreach (var item in lts)
         {
@@ -55,7 +55,7 @@ public class DapperExample
         
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            int result = db.Execute(query, new BlogDataModel()
+            int result = db.Execute(query, new BlogDapperDataModel()
             {
                 BlogTitle = title,
                 BlogAuthor = author,
@@ -72,7 +72,7 @@ public class DapperExample
         {
             string query = @"SELECT * FROM tbl_blog WHERE DeleteFlag = 0 AND BlogId = @BlogId";
             
-            var item = db.Query<BlogDataModel>(query, new BlogDataModel()
+            var item = db.Query<BlogDapperDataModel>(query, new BlogDapperDataModel()
             {
                 BlogId = id
             }).FirstOrDefault();
@@ -101,7 +101,7 @@ public class DapperExample
 
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            int result = db.Execute(query, new BlogDataModel()
+            int result = db.Execute(query, new BlogDapperDataModel()
             {
                 BlogId = id,
                 BlogTitle = title,
@@ -119,7 +119,7 @@ public class DapperExample
 
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            int result = db.Execute(query, new BlogDataModel()
+            int result = db.Execute(query, new BlogDapperDataModel()
             {
                 BlogId = id
             });
