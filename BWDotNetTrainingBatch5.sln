@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.ConsoleApp", "BWDotNetTrainingBatch5.ConsoleApp\BWDotNetTrainingBatch5.ConsoleApp.csproj", "{77173262-D654-4FD8-818B-EDA15F6E1AD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.Database", "BWDotNetTrainingBatch5.Database\BWDotNetTrainingBatch5.Database.csproj", "{433354F4-A225-4E31-B771-27EC999C1421}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.ConsoleApp2", "BWDotNetTrainingBatch5.ConsoleApp2\BWDotNetTrainingBatch5.ConsoleApp2.csproj", "{7234797E-E0E2-4756-921F-9032B1DFB04A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{77173262-D654-4FD8-818B-EDA15F6E1AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77173262-D654-4FD8-818B-EDA15F6E1AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77173262-D654-4FD8-818B-EDA15F6E1AD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433354F4-A225-4E31-B771-27EC999C1421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433354F4-A225-4E31-B771-27EC999C1421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433354F4-A225-4E31-B771-27EC999C1421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433354F4-A225-4E31-B771-27EC999C1421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7234797E-E0E2-4756-921F-9032B1DFB04A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7234797E-E0E2-4756-921F-9032B1DFB04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7234797E-E0E2-4756-921F-9032B1DFB04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7234797E-E0E2-4756-921F-9032B1DFB04A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
