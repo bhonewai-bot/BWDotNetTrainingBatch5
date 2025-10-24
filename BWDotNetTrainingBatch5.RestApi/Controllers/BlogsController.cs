@@ -18,23 +18,18 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
         [HttpGet]
         public IActionResult GetBlogs()
         {
-            var lts = _db.TblBlogs
-                .AsNoTracking()
-                .Where(x => x.DeleteFlag == false)
-                .ToList();
-            
+            var lts = _db.TblBlogs.AsNoTracking().ToList();
             return Ok(lts);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
-            var item = _db.TblBlogs.FirstOrDefault(x => x.BlogId == id);
+            var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
             if (item is null)
             {
-                return NotFound();
+                return NotFound(new { message = "Blog not found" });
             }
-            
             return Ok(item);
         }
 
@@ -43,7 +38,6 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
         {
             _db.TblBlogs.Add(blog);
             _db.SaveChanges();
-            
             return Ok(blog);
         }
 
@@ -53,7 +47,7 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
             var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
             if (item is null)
             {
-                return NotFound();
+                return NotFound(new { message = "Blog not found" });
             }
 
             item.BlogTitle = blog.BlogTitle;
@@ -62,7 +56,6 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
 
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
-            
             return Ok(item);
         }
 
@@ -70,10 +63,9 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
         public IActionResult PatchBlog(int id, TblBlog blog)
         {
             var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
-
             if (item is null)
             {
-                return NotFound();
+                return NotFound(new { message = "Blog not found" });
             }
 
             if (!string.IsNullOrEmpty(blog.BlogTitle))
@@ -85,7 +77,7 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
             {
                 item.BlogAuthor = blog.BlogAuthor;
             }
-
+            
             if (!string.IsNullOrEmpty(blog.BlogContent))
             {
                 item.BlogContent = blog.BlogContent;
@@ -93,25 +85,21 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
             
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
-            
             return Ok(item);
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id)
         {
-            var item = _db.TblBlogs
-                .AsNoTracking()
-                .FirstOrDefault(x => x.BlogId == id);
+            var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
             if (item is null)
             {
-                Console.WriteLine("Data not found");
+                return NotFound(new { message = "Blog not found" });
             }
-
+            
             item.DeleteFlag = true;
             _db.Entry(item).State = EntityState.Modified;
-            
-            // _db.Entry(item).State = EntityState.Deleted;
+            // _db.TblBlogs.Remove(item);
             _db.SaveChanges();
             return Ok();
         }
