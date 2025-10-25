@@ -26,4 +26,9 @@ EFCoreExample efCoreExample = new EFCoreExample();
 // efCoreExample.Create("Claude", "Bhone Wai", "Hello World");
 // efCoreExample.Edit(13);
 // efCoreExample.Update(16, "Hollow Knight", "Bhone Wai", "Hello World");
-efCoreExample.Delete(21);
+// efCoreExample.Delete(21);
+
+DapperExample2 dapperExample2 = new DapperExample2();
+// dapperExample2.Read();
+// dapperExample2.Edit(22);
+// dapperExample2.Create("Console", "Bhone Wai", "Hello World");
