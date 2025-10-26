@@ -10,6 +10,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.Rest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.Shared", "BWDotNetTrainingBatch5.Shared\BWDotNetTrainingBatch5.Shared.csproj", "{0C277DAC-AD37-4840-8E79-23B56FD71297}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.MinimalApi", "BWDotNetTrainingBatch5.MinimalApi\BWDotNetTrainingBatch5.MinimalApi.csproj", "{4355AC6E-9019-46BD-A0C7-6AA9C7001D98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.BirdMinimalApi", "BWDotNetTrainingBatch5.BirdMinimalApi\BWDotNetTrainingBatch5.BirdMinimalApi.csproj", "{A11A780B-AB19-40AA-8757-A88B17AA54C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.SnakeMinimalApi", "BWDotNetTrainingBatch5.SnakeMinimalApi\BWDotNetTrainingBatch5.SnakeMinimalApi.csproj", "{B3012AC2-2033-4D1B-AC44-ECEBF86A60C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +42,17 @@ Global
 		{0C277DAC-AD37-4840-8E79-23B56FD71297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C277DAC-AD37-4840-8E79-23B56FD71297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C277DAC-AD37-4840-8E79-23B56FD71297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4355AC6E-9019-46BD-A0C7-6AA9C7001D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4355AC6E-9019-46BD-A0C7-6AA9C7001D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4355AC6E-9019-46BD-A0C7-6AA9C7001D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4355AC6E-9019-46BD-A0C7-6AA9C7001D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11A780B-AB19-40AA-8757-A88B17AA54C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11A780B-AB19-40AA-8757-A88B17AA54C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11A780B-AB19-40AA-8757-A88B17AA54C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11A780B-AB19-40AA-8757-A88B17AA54C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3012AC2-2033-4D1B-AC44-ECEBF86A60C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3012AC2-2033-4D1B-AC44-ECEBF86A60C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3012AC2-2033-4D1B-AC44-ECEBF86A60C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3012AC2-2033-4D1B-AC44-ECEBF86A60C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
