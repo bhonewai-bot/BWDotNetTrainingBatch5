@@ -49,11 +49,73 @@ app.MapGet("/birds/${id}", (int id) =>
 .WithName("GetBird")
 .WithOpenApi();
 
+app.MapPost("/birds", (BirdModel requestModel) =>
+{
+    string folderPath = "Data/Birds.json";
+    string jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    requestModel.Id = result.Tbl_Bird.Count == 0 ? 1 : result.Tbl_Bird.Max(x => x.Id) + 1;
+    result.Tbl_Bird.Add(requestModel);
+    
+    var jsonStrToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(folderPath, jsonStrToWrite);
+    
+    return Results.Ok(requestModel);
+})
+.WithName("CreateBird")
+.WithOpenApi();
+
+app.MapPut("/birds/{id}", (int id, BirdModel requestModel) =>
+{
+    string folderPath = "Data/Birds.json";
+    string jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    var item = result.Tbl_Bird.FirstOrDefault(b => b.Id == id);
+    if (item is null)
+    {
+        return Results.BadRequest("No Bird found"); 
+    }
+    
+    item.BirdMyanmarName = requestModel.BirdMyanmarName;
+    item.BirdEnglishName = requestModel.BirdEnglishName;
+    item.Description = requestModel.Description;
+    item.ImagePath = requestModel.ImagePath;
+
+    var jsonStrToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(folderPath, jsonStrToWrite);
+
+    return Results.Ok(item);
+})
+.WithName("UpdateBird")
+.WithOpenApi();
+
+app.MapDelete("/birds/{id}", (int id) =>
+{
+    string folderPath = "Data/Birds.json";
+    string jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+    
+    var item = result.Tbl_Bird.FirstOrDefault(b => b.Id == id);
+    if (item is null)
+    {
+        return Results.BadRequest("No Bird found");
+    }
+
+    result.Tbl_Bird.Remove(item);
+    
+    var jsonStrToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(folderPath, jsonStrToWrite);
+
+    return Results.Ok();
+});
+
 app.Run();
 
 public class BirdResponseModel
 {
-    public BirdModel[] Tbl_Bird { get; set; }
+    public List<BirdModel> Tbl_Bird { get; set; }
 }
 
 public class BirdModel

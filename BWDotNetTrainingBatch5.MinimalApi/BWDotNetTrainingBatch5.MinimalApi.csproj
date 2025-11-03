@@ -14,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BWDotNetTrainingBatch5.Database\BWDotNetTrainingBatch5.Database.csproj" />
+      <ProjectReference Include="..\BWDotNetTrainingBatch5.Domain\BWDotNetTrainingBatch5.Domain.csproj" />
     </ItemGroup>
 
 </Project>
