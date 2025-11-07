@@ -13,8 +13,13 @@ HttpClientExample httpClientExample =  new HttpClientExample();
 // await httpClientExample.Delete(104);
 
 RestClientExample restClientExample = new RestClientExample();
-await restClientExample.Read();
+// await restClientExample.Read();
 // await restClientExample.Edit(1);
 // await restClientExample.Create("POS", "I can't do Math", 1);
 // await restClientExample.Update(1, "POS", "I can do Math", 1);
-await restClientExample.Delete(200);
+// await restClientExample.Delete(200);
+
+Console.WriteLine("Waiting for api...");
+
+RefitExample refitExample = new RefitExample();
+await refitExample.Run();
