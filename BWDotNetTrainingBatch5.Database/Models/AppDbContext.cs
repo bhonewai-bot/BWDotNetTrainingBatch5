@@ -6,25 +6,21 @@ namespace DotNetTrainingBatch5.Database.Models;
 
 public partial class AppDbContext : DbContext
 {
-    public AppDbContext()
-    {
-    }
-
-    public AppDbContext(DbContextOptions<AppDbContext> options)
+    public AppDbContext(DbContextOptions options) 
         : base(options)
     {
     }
 
     public virtual DbSet<TblBlog> TblBlogs { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
         {
             string connectionString = "Server=.;Database=DotNetTrainingBatch5;User Id=sa;Password=sasa@123;TrustServerCertificate=True;";
             optionsBuilder.UseSqlServer(connectionString);
         }
-    }
+    }*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -14,11 +14,11 @@ namespace BWDotNetTrainingBatch5.RestApi.Controllers
     [ApiController]
     public class BlogServiceController : ControllerBase
     {
-        private readonly BlogService _service;
+        private readonly IBlogService _service;
 
-        public BlogServiceController()
+        public BlogServiceController(IBlogService service)
         {
-            _service = new BlogService();
+            _service = service;
         }
         
         [HttpGet]

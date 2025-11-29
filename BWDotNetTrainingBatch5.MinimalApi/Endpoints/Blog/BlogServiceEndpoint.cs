@@ -1,5 +1,6 @@
 using BWDotNetTrainingBatch5.Domain.Features;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BWDotNetTrainingBatch5.MinimalApi.Endpoints.Blog;
 
@@ -7,18 +8,16 @@ public static class BlogServiceEndpoint
 {
     public static void UseBlogServiceEndpoint(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/blogs", () =>
+        app.MapGet("/blogs", ([FromServices] IBlogService service) =>
         {
-            BlogService service = new BlogService();
             var lts = service.GetBlogs();
             return Results.Ok(lts);
         })
         .WithName("GetBlogs")
         .WithOpenApi();
         
-        app.MapGet("/blogs/{id}", (int id) =>
+        app.MapGet("/blogs/{id}", ([FromServices] IBlogService service, int id) =>
         {
-            BlogService service = new BlogService();
             var item = service.GetBlog(id);
             if (item is null)
             {
@@ -30,9 +29,8 @@ public static class BlogServiceEndpoint
         .WithName("GetBlog")
         .WithOpenApi();
         
-        app.MapPost("/blogs", (TblBlog blog) =>
+        app.MapPost("/blogs", ([FromServices] IBlogService service, TblBlog blog) =>
         {
-            BlogService service = new BlogService();
             var model = service.CreateBlog(blog);
 
             return Results.Ok(model);
@@ -40,9 +38,8 @@ public static class BlogServiceEndpoint
         .WithName("CreateBlog")
         .WithOpenApi();
 
-        app.MapPut("/blogs/{id}", (int id, TblBlog blog) =>
+        app.MapPut("/blogs/{id}", ([FromServices] IBlogService service, int id, TblBlog blog) =>
         {
-            BlogService service = new BlogService();
             var item = service.UpdateBlog(id, blog);
             if (item is null)
             {
@@ -54,9 +51,8 @@ public static class BlogServiceEndpoint
         .WithName("UpdateBlog")
         .WithOpenApi();
 
-        app.MapPatch("/blogs/{id}", (int id, TblBlog blog) =>
+        app.MapPatch("/blogs/{id}", ([FromServices] IBlogService service, int id, TblBlog blog) =>
         {
-            BlogService service = new BlogService();
             var item = service.PatchBlog(id, blog);
             if (item is null)
             {
@@ -68,9 +64,8 @@ public static class BlogServiceEndpoint
         .WithName("PatchBlog")
         .WithOpenApi();
         
-        app.MapDelete("/blogs/{id}", (int id) =>
+        app.MapDelete("/blogs/{id}", ([FromServices] IBlogService service, int id) =>
         {
-            BlogService service = new BlogService();
             var item = service.DeleteBlog(id);
             if (item is null)
             {

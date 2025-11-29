@@ -1,14 +1,13 @@
 using DotNetTrainingBatch5.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BWDotNetTrainingBatch5.Domain.Features;
+namespace BWDotNetTrainingBatch5.Domain.Features.Blog;
 
-// Business Logic + Data Access
-public class  BlogService : IBlogService
+public class  BlogV2Service : IBlogService
 {
     private readonly AppDbContext _db;
 
-    public BlogService(AppDbContext db)
+    public BlogV2Service(AppDbContext db)
     {
         _db = db;
     }

@@ -101,7 +101,9 @@ public class EFCoreExample
             return;
         }
         
-        db.Entry(item).State = EntityState.Deleted;
+        item.DeleteFlag = true;
+        
+        db.Entry(item).State = EntityState.Modified;
 
         var result = db.SaveChanges();
 
