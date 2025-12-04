@@ -15,7 +15,10 @@ public class  BlogService : IBlogService
 
     public List<TblBlog> GetBlogs()
     {
-        var model = _db.TblBlogs.AsNoTracking().ToList();
+        var model = _db.TblBlogs
+            .AsNoTracking()
+            .Where(x => x.DeleteFlag == false)
+            .ToList();
         return model;
     }
 

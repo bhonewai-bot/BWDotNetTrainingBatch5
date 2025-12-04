@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.Rest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.RestApi3", "BWDotNetTrainingBatch5.RestApi3\BWDotNetTrainingBatch5.RestApi3.csproj", "{29DD9E3C-0EC8-4FDF-BA0B-362F2C6CB359}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWDotNetTrainingBatch5.MvcApp", "BWDotNetTrainingBatch5.MvcApp\BWDotNetTrainingBatch5.MvcApp.csproj", "{6731A48A-1D49-4185-9C05-BA64395E48BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,5 +86,9 @@ Global
 		{29DD9E3C-0EC8-4FDF-BA0B-362F2C6CB359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29DD9E3C-0EC8-4FDF-BA0B-362F2C6CB359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29DD9E3C-0EC8-4FDF-BA0B-362F2C6CB359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6731A48A-1D49-4185-9C05-BA64395E48BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6731A48A-1D49-4185-9C05-BA64395E48BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6731A48A-1D49-4185-9C05-BA64395E48BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6731A48A-1D49-4185-9C05-BA64395E48BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

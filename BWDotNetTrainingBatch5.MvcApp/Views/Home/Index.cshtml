@@ -1,0 +1,24 @@
+﻿@model HomeResponseModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "_Layout";
+    
+    string welcome = "Hello from Mar";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@welcome</h1>
+    <h3 class="display-6">@ViewBag.Message</h3>
+    <h3 class="display-6">@Model.AlertMessage</h3>
+    <h3 class="display-6">@ViewData["Message2"]</h3>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@section scripts
+{
+    <script>
+        console.log("Hello from JavaScript");
+    </script>
+}
