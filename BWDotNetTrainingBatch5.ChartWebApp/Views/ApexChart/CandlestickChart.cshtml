@@ -1,0 +1,80 @@
+@model ApexChartCandlestickModel
+
+@{
+    var lineData = Model.LineData;
+    var candleData = Model.CandlestickData;
+}
+
+@{
+    ViewBag.Title = "Candlestick Chart";
+    Layout = "_Layout";
+}
+
+<div id="chart"></div>
+
+@section scripts
+{
+    <script>
+        const candlestickData = @Html.Raw(JsonConvert.SerializeObject(Model.CandlestickData));
+        const lineData = @Html.Raw(JsonConvert.SerializeObject(Model.LineData));
+        
+        // Transform data to ApexCharts format
+        const formattedCandlestickData = candlestickData.map(item => ({
+            x: new Date(item.X),
+            y: item.Y
+        }));
+        
+        const formattedLineData = lineData.map(item => ({
+            x: new Date(item.X),
+            y: item.Y
+        }));
+        
+        var options = {
+            series: [{
+                name: 'line',
+                type: 'line',
+                data: formattedLineData
+            }, {
+                name: 'candle',
+                type: 'candlestick',
+                data: formattedCandlestickData
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+            },
+            title: {
+                text: 'CandleStick Chart',
+                align: 'left'
+            },
+            stroke: {
+                width: [3, 1]
+            },
+            tooltip: {
+                shared: true,
+                custom: [function({seriesIndex, dataPointIndex, w}) {
+                    return w.globals.series[seriesIndex][dataPointIndex]
+                }, function({ seriesIndex, dataPointIndex, w }) {
+                    var o = w.globals.seriesCandleO[seriesIndex][dataPointIndex]
+                    var h = w.globals.seriesCandleH[seriesIndex][dataPointIndex]
+                    var l = w.globals.seriesCandleL[seriesIndex][dataPointIndex]
+                    var c = w.globals.seriesCandleC[seriesIndex][dataPointIndex]
+                    return (
+                        '<div class="apexcharts-tooltip-candlestick">' +
+                        '<div>Open: <span class="value">' + o + '</span></div>' +
+                        '<div>High: <span class="value">' + h + '</span></div>' +
+                        '<div>Low: <span class="value">' + l + '</span></div>' +
+                        '<div>Close: <span class="value">' + c + '</span></div>' +
+                        '</div>'
+                    )
+                }]
+            },
+            xaxis: {
+                type: 'datetime'
+            }
+        };
+    
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>   
+}
