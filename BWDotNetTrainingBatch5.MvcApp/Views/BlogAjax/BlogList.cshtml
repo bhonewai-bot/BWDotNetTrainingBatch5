@@ -1,0 +1,88 @@
+@model List<TblBlog>
+
+@{
+    ViewBag.Title = "Blog Page";
+    Layout = "_Layout";
+}
+
+<a href="/BlogAjax/Create" class="btn btn-outline-success mt-2">Create New Blog</a>
+
+<table class="table table-responsive">
+    <thead>
+    <tr>
+        <th></th>
+        <th>No.</th>
+        <th>Blog Title</th>
+        <th>Blog Author</th>
+        <th>Blog Content</th>
+    </tr>
+    </thead>
+    <tbody id="tbDataTable">
+    
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            loadData();
+        });
+        
+        function loadData() {
+            $.ajax({
+                url: "/BlogAjax/List",
+                method: "GET",
+                success: (response) => {
+                    console.log({response});
+
+                    $("#tbDataTable").empty();
+                    for (let i = 0; i < response.length; i++) {
+                        let blog = response[i];
+                        let tr = `
+                            <tr>
+                                <td>
+                                    <a href="/BlogAjax/Edit/${blog.BlogId}" class="btn btn-warning">Edit</a>
+                                    <button type="button" data-id="${blog.BlogId}" class="btn btn-danger btn-delete" data->Delete</button>
+                                </td>
+                                <td>${i + 1}</td>
+                                <td>${blog.BlogTitle}</td>
+                                <td>${blog.BlogAuthor}</td>
+                                <td>${blog.BlogContent}</td>
+                            </tr>`;
+                        $("#tbDataTable").append(tr);
+                    }
+                    bindDeleteButton();
+                },
+                error: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+        
+        function bindDeleteButton() {
+            $('.btn-delete').click(function () {
+                const id = $(this).data('id');
+                $.ajax({
+                    url: `/BlogAjax/Delete`, 
+                    method: "POST",
+                    data: {
+                        Id: id
+                    },
+                    success: (response) => {
+                        if (!response.IsSuccess) {
+                            alert(response.Message);
+                            return;
+                        }
+                        
+                        alert(response.Message);
+                        location.href = "/BlogAjax";
+                    },
+                    error: (e) => {
+                        console.log(e);
+                    }
+                })
+            })
+        }
+    </script>
+}

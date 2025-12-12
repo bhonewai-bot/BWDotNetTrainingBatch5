@@ -1,0 +1,56 @@
+@model BlogRequestModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="mb-3">
+    <label for="txtTitle" class="form-label">Title</label>
+    <input type="text" id="txtTitle" class="form-control" name="Title" value="@Model.Title" />
+</div>
+<div class="mb-3">
+    <label for="txtAuthor" class="form-label">Author</label>
+    <input type="text" id="txtAuthor" class="form-control" value="@Model.Author" name="Author">
+</div>
+<div class="mb-3">
+    <label for="txtContent" class="form-label">Content</label>
+    <textarea class="form-control" id="txtContent" rows="3"  name="Content">@Model.Content</textarea>
+</div>
+
+<a href="/BlogAjax" id="btnCancel" class="btn btn-secondary">Cancel</a>
+<button id="btnSave" class="btn btn-success">Update</button>
+
+@section scripts
+{
+    <script>
+        $("#btnSave").click(function () {
+            const title = $("#txtTitle").val();
+            const author = $("#txtAuthor").val();
+            const content = $("#txtContent").val();
+            
+            $.ajax({
+                url: "/BlogAjax/Update/@Model.Id",
+                method: "POST",
+                data: {
+                    Title: title,
+                    Author: author,
+                    Content: content,
+                },
+                success: (response) => {
+                    console.log(response);
+                    if (!response.IsSuccess) {
+                        alert(response.Message);
+                        return;
+                    }
+                    
+                    alert(response.Message);
+                    location.href = "/BlogAjax";
+                },
+                error: (e) => {
+                    console.log(e);
+                }
+            })
+        })
+    </script>
+}
