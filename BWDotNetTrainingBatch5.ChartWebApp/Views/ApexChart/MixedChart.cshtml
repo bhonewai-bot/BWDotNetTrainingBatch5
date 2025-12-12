@@ -1,0 +1,85 @@
+@model ApexChartMixedChartModel
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+@{
+var _series = Model.Series;
+string[] _labels = Model.Labels;
+
+var serializerSettings = new JsonSerializerSettings
+{
+ContractResolver = new CamelCasePropertyNamesContractResolver()
+};
+}
+@{
+ViewBag.Title = "Mixed Chart";
+Layout = "_Layout";
+}
+
+<div id="chart"></div>
+
+@section scripts
+{
+<script>
+    const _series = @Html.Raw(JsonConvert.SerializeObject(_series, serializerSettings));
+    const _labels = @Html.Raw(JsonConvert.SerializeObject(_labels));
+
+    console.log('Series:', _series);
+    console.log('Labels:', _labels);
+
+    var options = {
+        series: _series,
+        chart: {
+            height: 350,
+            type: 'line',
+            stacked: false,
+        },
+        stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+        fill: {
+            opacity: [0.85, 0.25, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: _labels,
+        markers: {
+            size: 0
+        },
+        xaxis: {
+            type: 'datetime'
+        },
+        yaxis: {
+            title: {
+                text: 'Points',
+            }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " points";
+                    }
+                    return y;
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
+}
